@@ -7,6 +7,14 @@ TESSERACT_CONFIG = "-l eng --oem 1 --psm 6"
 
 OUTPUT_PATH = 'output/'
 
+OVERLAY_BORDER_COLOR = (0, 255, 0)
+OVERLAY_BORDER_THICKNESS = 2
+OVERLAY_TEXT_COLOR = (0, 0, 255)
+OVERLAY_TEXT_FONT = cv2.FONT_HERSHEY_SIMPLEX
+OVERLAY_TEXT_SCALE = 0.85
+OVERLAY_TEXT_X_SHIFT = 0
+OVERLAY_TEXT_Y_SHIFT = -10
+OVERLAY_TEXT_THICKNESS = 2
 
 def preprocessImage(image):
     grayscale = utility.getGrayScaleImage(image)
@@ -32,6 +40,8 @@ def main(imgPath, outputFileName):
                                    cv2.CHAIN_APPROX_NONE)
     output = []
 
+    imageWithOverlay = image.copy()
+
     contours.reverse()
     for contour in contours:
         x, y, width, height = cv2.boundingRect(contour)
@@ -42,7 +52,15 @@ def main(imgPath, outputFileName):
         text = "".join(
             [char if ord(char) < 128 else "" for char in text]).strip()
 
+        cv2.rectangle(imageWithOverlay, (x, y),
+                      (x + width, y + height), OVERLAY_BORDER_COLOR, OVERLAY_BORDER_THICKNESS)
+
+        cv2.putText(imageWithOverlay, text, (x + OVERLAY_TEXT_X_SHIFT, y + OVERLAY_TEXT_Y_SHIFT),
+                    OVERLAY_TEXT_FONT, OVERLAY_TEXT_SCALE, OVERLAY_TEXT_COLOR, OVERLAY_TEXT_THICKNESS)
+
         output.append(text)
+
+    cv2.imshow("With Overlay", imageWithOverlay)
 
     with open(OUTPUT_PATH + outputFileName, 'w') as outputFile:
         outputFile.write('\n'.join(output))
