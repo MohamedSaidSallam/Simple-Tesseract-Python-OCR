@@ -27,7 +27,7 @@ parser = argparse.ArgumentParser(
 parser.add_argument("-i", "--image", type=str, required=True,
                     help="Path to input image")
 parser.add_argument("-c", "--show-final-image", action='store_true',
-                    help="Show the final image with an overlay of the text recognised. (default: %(default)s)")
+                    help="Show the final image with an overlay of the text recognised. unnecessary if verbose mode is on. (default: %(default)s)")
 parser.add_argument("-t", "--text-output-filename", type=str, default='output.txt',
                     help="File name to put the text output in. (default: %(default)s)")
 parser.add_argument("-f", "--image-output-filename", type=str, default='output.png',
