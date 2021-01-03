@@ -13,11 +13,11 @@ def preprocessImage(image):
     cv2.imshow("grayscale", grayscale)
     noNoise = utility.removeNoise(grayscale)
     cv2.imshow("noNoise", noNoise)
-    threshold = utility.applyThresholding(noNoise)
+    threshold = utility.applyThresholdingInv(noNoise)
     cv2.imshow("threshold", threshold)
-    eroded = utility.getErodedImage(threshold)
-    cv2.imshow("eroded", eroded)
-    return eroded
+    dilated = utility.getDilatedImage(threshold)
+    cv2.imshow("dilated", dilated)
+    return dilated
 
 
 def main(imgPath, outputFileName):
@@ -32,11 +32,12 @@ def main(imgPath, outputFileName):
                                    cv2.CHAIN_APPROX_NONE)
     output = []
 
+    contours.reverse()
     for contour in contours:
         x, y, width, height = cv2.boundingRect(contour)
 
         text = pytesseract.image_to_string(
-            preprocessed[y:y + height, x:x + width], config=TESSERACT_CONFIG)
+            image[y:y + height, x:x + width], config=TESSERACT_CONFIG)
 
         text = "".join(
             [char if ord(char) < 128 else "" for char in text]).strip()

@@ -4,8 +4,8 @@ import numpy as np
 DEFAULT_MEDIAN_BLUR_KSIZE = 3
 DEFAULT_CANNY_THRESHIKD_1 = 100
 DEFAULT_CANNY_THRESHIKD_2 = 200
-DEFAULT_DILATE_KERNAL = np.ones((3, 3), np.uint8)
-DEFAULT_ERODE_KERNAL = np.ones((3, 3), np.uint8)
+DEFAULT_DILATE_KERNAL = np.ones((18, 18), np.uint8)
+DEFAULT_ERODE_KERNAL = np.ones((18, 18), np.uint8)
 DEFAULT_OPEN_KERNAL = np.ones((5, 5), np.uint8)
 DEFAULT_CLOSE_KERNAL = np.ones((5, 5), np.uint8)
 
@@ -20,6 +20,10 @@ def removeNoise(image):
 
 def applyThresholding(image):
     return cv2.threshold(image, 0, 255, cv2.THRESH_OTSU | cv2.THRESH_BINARY)[1]
+
+
+def applyThresholdingInv(image):
+    return cv2.threshold(image, 0, 255, cv2.THRESH_OTSU | cv2.THRESH_BINARY_INV)[1]
 
 
 def getDilatedImage(image):
