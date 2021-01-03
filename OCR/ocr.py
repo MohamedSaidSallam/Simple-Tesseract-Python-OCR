@@ -1,8 +1,6 @@
 import cv2
 import pytesseract
 
-import ocr.utility as utility
-
 TESSERACT_CONFIG = "-l eng --oem 1 --psm 6"
 
 OUTPUT_PATH = 'output/'
@@ -17,29 +15,23 @@ OVERLAY_TEXT_Y_SHIFT = -10
 OVERLAY_TEXT_THICKNESS = 2
 
 
-def preprocessImage(image, isVerbose):
-    grayscale = utility.getGrayScaleImage(image)
-    noNoise = utility.removeNoise(grayscale)
-    threshold = utility.applyThresholdingInv(noNoise)
-    dilated = utility.getDilatedImage(threshold)
+def preprocessImage(image, preprocessing, isVerbose):
+    for func in preprocessing:
+        image = func(image)
+        if isVerbose:
+            cv2.imshow(f"{func.__name__}", image)
 
-    if isVerbose:
-        cv2.imshow("grayscale", grayscale)
-        cv2.imshow("noNoise", noNoise)
-        cv2.imshow("threshold", threshold)
-        cv2.imshow("dilated", dilated)
-
-    return dilated
+    return image
 
 
-def main(imgPath, textOutputFileName, imageOutputFileName, showFinalImage, isVerbose):
+def main(imgPath, textOutputFileName, imageOutputFileName, showFinalImage, isVerbose, preprocessing):
 
     image = cv2.imread(imgPath)
 
     if isVerbose:
         cv2.imshow("The Image Loaded", image)
 
-    preprocessed = preprocessImage(image, isVerbose)
+    preprocessed = preprocessImage(image, preprocessing, isVerbose)
 
     contours, _ = cv2.findContours(preprocessed, cv2.RETR_EXTERNAL,
                                    cv2.CHAIN_APPROX_NONE)
