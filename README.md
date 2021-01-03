@@ -25,6 +25,8 @@ venv/Scripts/activate
 pip install -r requirements.txt
 ```
 
+duplicate the ```.env.example``` and rename it to ```.env``` and fill in the ```tesseract_path```.
+
 ### Running the code
 
 you can get the list of paramters using the following:
