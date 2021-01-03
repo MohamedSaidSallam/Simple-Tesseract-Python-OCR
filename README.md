@@ -101,13 +101,13 @@ Text is at different regions
 ```
 
 output.png
-![output.png](docs\output.png)
+![output.png](docs/output.png)
 
 verbose:
-![output.png](docs\getGrayScaleImage.png)
-![output.png](docs\removeNoise.png)
-![output.png](docs\applyThresholdingInv.png)
-![output.png](docs\getDilatedImage.png)
+![getGrayScaleImage.png](docs/getGrayScaleImage.png)
+![removeNoise.png](docs/removeNoise.png)
+![applyThresholdingInv.png](docs/applyThresholdingInv.png)
+![getDilatedImage.png](docs/getDilatedImage.png)
 
 ## Built With
 
