@@ -86,7 +86,28 @@ Source: https://github.com/TheDigitalPhoenixX/Simple-Tesseract-Python-OCR
 
 #### Example
 
+```sh
+py -m ocr -i "example input\input.jpg" -v
+```
 
+input.jpg
+![input.png](example%20input/input.jpg)
+
+output.txt
+
+```
+This is SAMPLE TEXT
+Text is at different regions
+```
+
+output.png
+![output.png](docs\output.png)
+
+verbose:
+![output.png](docs\getGrayScaleImage.png)
+![output.png](docs\removeNoise.png)
+![output.png](docs\applyThresholdingInv.png)
+![output.png](docs\getDilatedImage.png)
 
 ## Built With
 
