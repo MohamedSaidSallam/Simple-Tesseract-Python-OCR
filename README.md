@@ -36,6 +36,52 @@ python -m ocr --help
 ```
 
 ```sh
+usage: __main__.py [-h] -i IMAGE [-c] [-t TEXT_OUTPUT_FILENAME]
+                   [-f IMAGE_OUTPUT_FILENAME] [-v] [--getGrayScaleImage]
+                   [--removeNoise] [--applyThresholding]
+                   [--applyThresholdingInv] [--getDilatedImage]
+                   [--getErodedImage] [--applyOpening] [--applyClosing]
+                   [--getCannyResult]
+
+A simple tesseract python script to get text from input image. by default this
+list of preprocessing functions is used [getGrayScaleImage, removeNoise,
+applyThresholdingInv, getDilatedImage]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i IMAGE, --image IMAGE
+                        path to input image
+  -c, --show-final-image
+                        show the final image with an overlay of the text
+                        recognised. (default: False)
+  -t TEXT_OUTPUT_FILENAME, --text-output-filename TEXT_OUTPUT_FILENAME
+                        file name to put the text output in. (default:
+                        output.txt)
+  -f IMAGE_OUTPUT_FILENAME, --image-output-filename IMAGE_OUTPUT_FILENAME
+                        filename to output the final image in. (default:
+                        output.png)
+  -v, --verbose         Show intermediate images. (default: False)
+  --getGrayScaleImage   (PreProcessing) adds getGrayScaleImage to
+                        preprocessing. order is important.
+  --removeNoise         (PreProcessing) adds removeNoise to preprocessing.
+                        order is important.
+  --applyThresholding   (PreProcessing) adds applyThresholding to
+                        preprocessing. order is important.
+  --applyThresholdingInv
+                        (PreProcessing) adds applyThresholdingInv to
+                        preprocessing. order is important.
+  --getDilatedImage     (PreProcessing) adds getDilatedImage to preprocessing.
+                        order is important.
+  --getErodedImage      (PreProcessing) adds getErodedImage to preprocessing.
+                        order is important.
+  --applyOpening        (PreProcessing) adds applyOpening to preprocessing.
+                        order is important.
+  --applyClosing        (PreProcessing) adds applyClosing to preprocessing.
+                        order is important.
+  --getCannyResult      (PreProcessing) adds getCannyResult to preprocessing.
+                        order is important.
+
+Source: https://github.com/TheDigitalPhoenixX/Simple-Tesseract-Python-OCR
 ```
 
 #### Example
