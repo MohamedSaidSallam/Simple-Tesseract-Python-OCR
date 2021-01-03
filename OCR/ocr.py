@@ -52,7 +52,7 @@ def main(imgPath, textOutputFileName, imageOutputFileName, showFinalImage, isVer
         cv2.rectangle(imageWithOverlay, (x, y),
                       (x + width, y + height), OVERLAY_BORDER_COLOR, OVERLAY_BORDER_THICKNESS)
 
-        cv2.putText(imageWithOverlay, text, (x + OVERLAY_TEXT_X_SHIFT, y + OVERLAY_TEXT_Y_SHIFT),
+        cv2.putText(imageWithOverlay, text.replace('\n', ' '), (x + OVERLAY_TEXT_X_SHIFT, y + OVERLAY_TEXT_Y_SHIFT),
                     OVERLAY_TEXT_FONT, OVERLAY_TEXT_SCALE, OVERLAY_TEXT_COLOR, OVERLAY_TEXT_THICKNESS)
 
         output.append(text)
