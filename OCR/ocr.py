@@ -17,25 +17,29 @@ OVERLAY_TEXT_Y_SHIFT = -10
 OVERLAY_TEXT_THICKNESS = 2
 
 
-def preprocessImage(image):
+def preprocessImage(image, isVerbose):
     grayscale = utility.getGrayScaleImage(image)
-    cv2.imshow("grayscale", grayscale)
     noNoise = utility.removeNoise(grayscale)
-    cv2.imshow("noNoise", noNoise)
     threshold = utility.applyThresholdingInv(noNoise)
-    cv2.imshow("threshold", threshold)
     dilated = utility.getDilatedImage(threshold)
-    cv2.imshow("dilated", dilated)
+
+    if isVerbose:
+        cv2.imshow("grayscale", grayscale)
+        cv2.imshow("noNoise", noNoise)
+        cv2.imshow("threshold", threshold)
+        cv2.imshow("dilated", dilated)
+
     return dilated
 
 
-def main(imgPath, textOutputFileName, imageOutputFileName, showFinalImage):
+def main(imgPath, textOutputFileName, imageOutputFileName, showFinalImage, isVerbose):
 
     image = cv2.imread(imgPath)
 
-    cv2.imshow("The Image Loaded", image)
+    if isVerbose:
+        cv2.imshow("The Image Loaded", image)
 
-    preprocessed = preprocessImage(image)
+    preprocessed = preprocessImage(image, isVerbose)
 
     contours, _ = cv2.findContours(preprocessed, cv2.RETR_EXTERNAL,
                                    cv2.CHAIN_APPROX_NONE)
@@ -61,7 +65,7 @@ def main(imgPath, textOutputFileName, imageOutputFileName, showFinalImage):
 
         output.append(text)
 
-    if showFinalImage:
+    if showFinalImage or isVerbose:
         cv2.imshow("With Overlay", imageWithOverlay)
 
     with open(OUTPUT_PATH + textOutputFileName, 'w') as outputFile:
