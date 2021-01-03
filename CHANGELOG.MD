@@ -6,10 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
-## [v0.1.0] - 2021-01-03
+## [v0.1.1] - 2021-01-03
 
 ### Added
 
+- preprocessing
 - Tesseract Basic OCR
 
 [Unreleased]: https://github.com/TheDigitalPhoenixX/Simple-Tesseract-Python-OCR/compare/v0.1.0...HEAD
