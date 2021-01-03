@@ -25,13 +25,13 @@ parser = argparse.ArgumentParser(
     epilog='Source: https://github.com/TheDigitalPhoenixX/Simple-Tesseract-Python-OCR'
 )
 parser.add_argument("-i", "--image", type=str, required=True,
-                    help="path to input image")
+                    help="Path to input image")
 parser.add_argument("-c", "--show-final-image", action='store_true',
-                    help="show the final image with an overlay of the text recognised. (default: %(default)s)")
+                    help="Show the final image with an overlay of the text recognised. (default: %(default)s)")
 parser.add_argument("-t", "--text-output-filename", type=str, default='output.txt',
-                    help="file name to put the text output in. (default: %(default)s)")
+                    help="File name to put the text output in. (default: %(default)s)")
 parser.add_argument("-f", "--image-output-filename", type=str, default='output.png',
-                    help="filename to output the final image in. (default: %(default)s)")
+                    help="Filename to output the final image in. (default: %(default)s)")
 parser.add_argument("-v", "--verbose", action='store_true',
                     help="Show intermediate images. (default: %(default)s)")
 
