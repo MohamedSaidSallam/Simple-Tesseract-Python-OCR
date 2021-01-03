@@ -9,7 +9,7 @@ parser = argparse.ArgumentParser(
 )
 parser.add_argument("-i", "--image", type=str, required=True,
                     help="path to input image")
-parser.add_argument("-c", "--show-final-image", type=bool, default=False,
+parser.add_argument("-c", "--show-final-image", action='store_true',
                     help="show the final image with an overlay of the text recognised. (default: %(default)s)")
 parser.add_argument("-t", "--text-output-filename", type=str, default='output.txt',
                     help="file name to put the text output in. (default: %(default)s)")
