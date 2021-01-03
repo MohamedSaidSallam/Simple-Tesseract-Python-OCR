@@ -16,6 +16,7 @@ OVERLAY_TEXT_X_SHIFT = 0
 OVERLAY_TEXT_Y_SHIFT = -10
 OVERLAY_TEXT_THICKNESS = 2
 
+
 def preprocessImage(image):
     grayscale = utility.getGrayScaleImage(image)
     cv2.imshow("grayscale", grayscale)
@@ -28,7 +29,7 @@ def preprocessImage(image):
     return dilated
 
 
-def main(imgPath, outputFileName):
+def main(imgPath, textOutputFileName, imageOutputFileName, showFinalImage):
 
     image = cv2.imread(imgPath)
 
@@ -60,9 +61,12 @@ def main(imgPath, outputFileName):
 
         output.append(text)
 
-    cv2.imshow("With Overlay", imageWithOverlay)
+    if showFinalImage:
+        cv2.imshow("With Overlay", imageWithOverlay)
 
-    with open(OUTPUT_PATH + outputFileName, 'w') as outputFile:
+    with open(OUTPUT_PATH + textOutputFileName, 'w') as outputFile:
         outputFile.write('\n'.join(output))
+
+    cv2.imwrite(OUTPUT_PATH + imageOutputFileName, imageWithOverlay)
 
     cv2.waitKey(0)
